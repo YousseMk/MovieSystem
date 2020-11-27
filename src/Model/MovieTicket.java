@@ -6,7 +6,10 @@ public class MovieTicket {
     private int tNum;
     private String theatreName;
 
-    public MovieTicket(){
-
+    public MovieTicket(String s, String m, int num, String tn){
+        seatID = s;
+        movieName = m;
+        tNum = num;
+        theatreName = tn;
     }
 }

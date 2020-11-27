@@ -5,7 +5,11 @@ public class Account {
     private String password;
     private PaymentCard card;
 
-    public Account (){
-
+    public Account (String n, String p, PaymentCard c){
+        name = n;
+        password = p;
+        card = c;
     }
+
+
 }
