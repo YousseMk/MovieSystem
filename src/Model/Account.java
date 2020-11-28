@@ -5,12 +5,13 @@ public class Account {
     private String password;
     private PaymentCard card;
 
-<<<<<<< Updated upstream
-    public Account (String n, String p, PaymentCard c){
-        name = n;
+
+    public Account (String n, String p, PaymentCard c) {
+        username = n;
         password = p;
         card = c;
-=======
+    }
+
     public Account (String username, String password, String card){
         this.username = username;
         this.password = password;
@@ -41,7 +42,6 @@ public class Account {
 
     public void setCard(PaymentCard card) {
         this.card = card;
->>>>>>> Stashed changes
     }
 
 
