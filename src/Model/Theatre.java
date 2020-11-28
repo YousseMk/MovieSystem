@@ -1,7 +1,8 @@
 package Model;
 
 public class Theatre {
-	private String name;
+
+	  private String name;
     private Seat seatGrid; //array?
     private int tNum;
     private int cap;

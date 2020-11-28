@@ -43,5 +43,4 @@ public class MovieTicket {
     }
     public String getTheatreName() {
     	return theatreName;
-    }
 }

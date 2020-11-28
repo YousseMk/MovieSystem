@@ -13,7 +13,7 @@ public class DBController {
     public void connectToDB(){
 
         try{
-            String url = "jdbc:mysql://localhost:3306";
+            String url = "jdbc:mysql://localhost:3306/MovieDatabase";
             con = DriverManager.getConnection(url, "root", "password");
 
             System.out.println("connected to the db!");

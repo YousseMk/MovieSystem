@@ -8,8 +8,7 @@ public class Movie {
     public Movie(String m, double d){
     	movie = m;
     	duration = d;
-    }
-    
+    } 
     public void setMovie(String m) {
     	movie = m;
     }
@@ -20,6 +19,6 @@ public class Movie {
     	duration = d;
     }
     public double getDuration() {
-    	return duration;
+    	return duration;  
     }
 }
