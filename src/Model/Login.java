@@ -7,6 +7,4 @@ public class Login {
         // return 1.
 
         return 0;
-    }
-
 }
