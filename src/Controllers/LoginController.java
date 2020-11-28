@@ -14,6 +14,7 @@ public class LoginController {
         //calls the login view function
     }
 
+    /*
     public User attemptLogin(){
         //the view will prompt user for username and password
         //the program will check the database for a user with the provided username and password
@@ -55,4 +56,5 @@ public class LoginController {
             }
         return returnedUser;
     }
+    */
 }

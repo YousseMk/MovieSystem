@@ -5,7 +5,7 @@ import View.LoginView;
 
 public class Login {
 
-
+    /*
     public User login() {
 
         LoginController lc = new LoginController();
@@ -16,6 +16,7 @@ public class Login {
 
         return tobeDeterminied;
     }
+    */
 }
 
 

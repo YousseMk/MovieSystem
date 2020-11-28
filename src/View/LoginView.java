@@ -1,5 +1,90 @@
 package View;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+
+public class LoginView extends JFrame {
+
+    private JPanel contentPane;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
+    /**
+     * Create the frame.
+     */
+    public LoginView() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblNewLabel = new JLabel("UserName");
+        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel.setBounds(125, 68, 69, 14);
+        contentPane.add(lblNewLabel);
+
+        JLabel lblNewLabel_1 = new JLabel("Password");
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel_1.setBounds(125, 129, 69, 14);
+        contentPane.add(lblNewLabel_1);
+
+        usernameField = new JTextField();
+        usernameField.setBounds(255, 65, 115, 20);
+        contentPane.add(usernameField);
+        usernameField.setColumns(10);
+
+        passwordField = new JPasswordField();
+        passwordField.setBounds(255, 126, 115, 20);
+        contentPane.add(passwordField);
+
+        JButton btnNewButton = new JButton("Login");
+        btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
+                    //check usernameField.getText()
+                    //check passwordField.getText()
+                    // login with the above info
+
+                    if (true) {
+                        RegUserView reg = new RegUserView();
+                        reg.setVisible(true);
+                        dispose();
+                    }
+                    //else {
+                    //	JOptionPane.showMessageDialog(null, "Login info incorrect");
+                    //}
+
+                }catch(Exception e1){
+                    JOptionPane.showMessageDialog(null, e1);
+                }
+            }
+        });
+        btnNewButton.setBounds(204, 194, 115, 23);
+        contentPane.add(btnNewButton);
+
+
+    }
+
+}
+
+
+/*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -91,3 +176,5 @@ public class LoginView implements ActionListener {
         }
     }
 }
+
+*/
