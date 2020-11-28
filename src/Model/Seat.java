@@ -11,7 +11,7 @@ public class Seat {
     public void setRow(char r) {
     	row = r;
     }
-    public String getRow() {
+    public char getRow() {
     	return row;
     }
     public void setCol(int c) {
