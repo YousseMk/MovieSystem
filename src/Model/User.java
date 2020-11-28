@@ -1,4 +1,5 @@
 package Model;
+import java.util.ArrayList;
 
 public class User {
     private String name;
@@ -10,7 +11,7 @@ public class User {
         this.name = n;
         this. email = e;
         this.address = a;
-        bookings = new ArrayList<Booking>;
+        bookings = new ArrayList<Booking>();
     }
 
     public String getName() {
@@ -45,11 +46,13 @@ public class User {
         this.bookings = bookings;
     }
 
-    book(){
+    /*book(){
+        Booking b = new Booking();
+
         b.selectTheatre();
         b.selectMovie();
         b.selectShowTime();
         b.selectSeat();
 
-    }
+    }*/
 }
