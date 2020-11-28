@@ -3,6 +3,7 @@ package Controllers;
 import Model.Account;
 import Model.RegisteredUser;
 import Model.User;
+import View.LoginView;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +14,17 @@ public class LoginController {
         //calls the login view function
     }
 
-    public Model.RegisteredUser attemptLogin(String username, String password){
+    public User attemptLogin(){
         //the view will prompt user for username and password
         //the program will check the database for a user with the provided username and password
         //if the username or password is unavailable, error message will be displayed else we log them in
+        LoginView lv = new LoginView();
+        lv.displayLogin();
+
+
+        System.out.println("DONE");
+        String username = lv.getU();
+        String password = lv.getP();
         DBController db = new DBController();
         ResultSet rs;
         RegisteredUser returnedUser = null;
