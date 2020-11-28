@@ -3,7 +3,8 @@ package Model;
 public class Refund {
     private double amount;
 
-    public Refund(){
+    public Refund(double amount){
+        this.amount = amount;
 
     }
     public void deleteBooking(Booking b){
