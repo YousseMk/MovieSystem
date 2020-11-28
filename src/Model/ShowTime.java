@@ -4,12 +4,20 @@ import java.sql.Time;
 import java.util.Date;
 
 public class ShowTime {
-    Date date;
-    Time start;
-    Time end;
-    Movie movie;
-    Theatre theatre;
-
+    private Date date;
+    private Time start;
+    private Time end;
+    private Movie movie;
+    private Theatre theatre;
+    
+    public ShowTime (Date d, Time s, Time e, Movie m, Theatre t) {
+    	date = d;
+    	start = s;
+    	end = e;
+    	movie = m;
+    	theatre = t;
+    }
+    
     public Date getDate() {
         return date;
     }
