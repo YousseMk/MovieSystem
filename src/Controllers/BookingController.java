@@ -1,5 +1,7 @@
 package Controllers;
 
+import Model.Booking;
+
 public class BookingController {
 
     public void displayTheatreInfo(Booking b){
