@@ -8,7 +8,7 @@ public class MovieTicket {
     private String theatreName;
 
     public MovieTicket(String s, String m, int n, String tName){
-    	booking = new Booking();
+    	//booking = new Booking();
     	seatID = s;
     	movieName = m;
     	tNum = n;
@@ -42,5 +42,6 @@ public class MovieTicket {
     	theatreName = tn;
     }
     public String getTheatreName() {
-    	return theatreName;
+        return theatreName;
+    }
 }
