@@ -76,7 +76,6 @@ INSERT into `MovieDatabase`.`Movie`(`name`, `theatrenum`, `showstart`, `showend`
 INSERT into `MovieDatabase`.`Movie`(`name`, `theatrenum`, `showstart`, `showend`) values ('A-Team', 10, '4:00', '6:00');
 INSERT into `MovieDatabase`.`Movie`(`name`, `theatrenum`, `showstart`, `showend`) values ('A-Team', 10, '8:00', '10:00');
 
-
 create table if not exists MovieDatabase.Seats(
 seatrow varchar(255),
 seatcol int);
@@ -111,6 +110,16 @@ insert into `MovieDatabase`.`Seats`(`seatrow`, `seatcol`) values ('e', 5);
 Insert into `MovieDatabase`.`RegisteredUser`(`name`, `email`, `address`, `memberid`, `username`, `password`, `cardnum`) values
 ('youssef', 'youssefmaksoud50@gmail.com', '22 glen way', 1234, 'jojo', '1234567', '1111111111111111');
 
+Insert into `MovieDatabase`.`RegisteredUser`(`name`, `email`, `address`, `memberid`, `username`, `password`, `cardnum`) values
+('elgiz', 'elgizabbasov2001@gmail.com', '3456 drive nw', 3333, 'project', '0001112', '2222222222222222');
+
+Insert into `MovieDatabase`.`RegisteredUser`(`name`, `email`, `address`, `memberid`, `username`, `password`, `cardnum`) values
+('tony', 'ensfproj@gmail.com', 'stephen ave', 0001, 'tony', '7777777', '1234567890123456');
+
+Insert into `MovieDatabase`.`RegisteredUser`(`name`, `email`, `address`, `memberid`, `username`, `password`, `cardnum`) values
+('alphonso', 'davies@gmail.com', 'saddleway ne', 5555, 'munich', '8889990', '4355665678990123');
+
+
 Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
 (122, '1234', 'a', 1, 'UP', 1, '4:00', '6:00');
 Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
@@ -119,4 +128,17 @@ Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatco
 (124, '1234', 'c', 2, 'UP', 1, '4:00', '6:00');
 Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
 (125, '1234', 'd', 5, 'UP', 1, '4:00', '6:00');
-
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(126, '3333', 'a', 1, 'Avengers', 9, '12:00', '2:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(127, '3333', 'b', 3, 'Avengers', 9, '12:00', '2:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(128, '0001', 'c', 5, 'Batman', 8, '8:00', '10:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(129, '0001', 'c', 4, 'Batman', 8, '8:00', '10:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(130, '0001', 'c', 3, 'Batman', 8, '8:00', '10:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(131, '5555', 'b', 1, 'A-Team', 10, '4:00', '6:00');
+Insert into `MovieDatabase`.`Booking`(`bookingid`, `memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
+(132, '5555', 'b', 2, 'A-Team', 10, '4:00', '6:00');
