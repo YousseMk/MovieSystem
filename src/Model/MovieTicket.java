@@ -1,11 +1,12 @@
 package Model;
 
 public class MovieTicket {
-	private Booking booking;
     private String seatID;
     private String movieName;
     private int tNum;
     private String theatreName;
+    private String startTime;
+    private String endTime;
 
     public MovieTicket(String s, String m, int n, String tName){
     	//booking = new Booking();
@@ -14,12 +15,35 @@ public class MovieTicket {
     	tNum = n;
     	theatreName = tName;
     }
-    public void setBooking(Booking bk) {
-    	booking = bk;
+
+    public MovieTicket(){
+
     }
-    public Booking getBooking() {
-    	return booking;
+
+    public int gettNum() {
+        return tNum;
     }
+
+    public void settNum(int tNum) {
+        this.tNum = tNum;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public void setSeatID(String id) {
     	seatID = id;
     }
