@@ -46,13 +46,13 @@ public class User {
         this.bookings = bookings;
     }
 
-    /*book(){
+    public void book(String email){
         Booking b = new Booking();
 
+       /* b.selectMovie();
         b.selectTheatre();
-        b.selectMovie();
-        b.selectShowTime();
-        b.selectSeat();
+        b.selectShowtime();
+        b.selectSeat();*/
 
-    }*/
+    }
 }
