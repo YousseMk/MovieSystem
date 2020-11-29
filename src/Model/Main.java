@@ -1,21 +1,23 @@
 package Model;
-import java.util.ArrayList;
-import Controllers.UserController;
-import View.LoginView;
+
+import View.MovieListView;
+import View.SeatView;
+import View.ShowtimeList;
 
 public class Main {
     public static void main(String[] args){
 
-        //ArrayList <Theatre> theatres = new ArrayList <Theatre>();
+        /*SeatView s = new SeatView();
+        s.DisplayAvailSeats();*/
 
-        /*
-        Login l = new Login();
-        User newuser = null;
-        newuser = l.login();
-
-        System.out.println(newuser.getEmail());
-
-        */
+        SeatView s = new SeatView();
+        MovieTicket t = new MovieTicket();
+        t.setMovieName("UP");
+        t.setStartTime("4:00");
+        t.setEndTime("6:00");
+        //t.setTheatreName("Cineplex");
+        //t.setNum(1);
+        s.DisplayAvailSeats(t);
 
 
     }
