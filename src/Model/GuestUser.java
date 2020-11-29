@@ -21,7 +21,7 @@ public class GuestUser extends User{
         // each new member, not having to worry about copies.
         int NewID = (int)Math.random();         // change this later.
         Account a = new Account(Username,Password,card);
-        RegisteredUser newReg = new RegisteredUser(this.getName(), this.getEmail(), this.getAddress(), a, NewID)
+        RegisteredUser newReg = new RegisteredUser(this.getName(), this.getEmail(), this.getAddress(), a, NewID);
         // add this user into the database
         Ucontroller.addMember(newReg);
     }
