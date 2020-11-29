@@ -1,5 +1,7 @@
 package View;
 
+import Model.RegisteredUser;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -21,7 +23,8 @@ public class RegUserView extends JFrame {
     /**
      * Create the frame.
      */
-    public RegUserView() {
+    public RegUserView(RegisteredUser user) {
+        super("Welcome " + user.getName() + " (" + user.getMemberid() + ")");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
         setExtendedState(JFrame.MAXIMIZED_BOTH);

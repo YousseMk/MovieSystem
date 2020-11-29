@@ -54,8 +54,8 @@ public class RegCancelView extends JFrame {
 
                     JOptionPane.showMessageDialog(null, "Movie Cancelled Successfully");
                     if (true) {
-                        RegUserView reg = new RegUserView();
-                        reg.setVisible(true);
+                        //RegUserView reg = new RegUserView();
+                        //reg.setVisible(true);
                         dispose();
                     }
                     //else {

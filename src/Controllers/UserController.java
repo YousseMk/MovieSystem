@@ -12,8 +12,8 @@ public class UserController {
         int success;
         try{
             db.connectToDB();
-            String stmt = "INSERT INTO MovieDatabase.RegisteredUser(name, email, address, memberid, username, password, cardnum)" +
-                    " values (?, ?, ?, ?, ?, ?, ?);";
+            String stmt = "INSERT INTO MovieDatabase.RegisteredUser(name, email, address, memberid, username, password, cardnum, cvv, exp)" +
+                    " values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             PreparedStatement s = db.getCon().prepareStatement(stmt);
             s.setString(1, u.getName());
@@ -23,6 +23,8 @@ public class UserController {
             s.setString(5, u.getAccount().getUsername());
             s.setString(6, u.getAccount().getPassword());
             s.setString(7, u.getAccount().getCard().getcNum());
+            s.setString(8, u.getAccount().getCard().getSecCode());
+            s.setString(9, u.getAccount().getCard().getExp());
 
             success = s.executeUpdate();
 

@@ -12,14 +12,6 @@ public class Account {
         card = c;
     }
 
-    public Account (String username, String password, String card){
-        this.username = username;
-        this.password = password;
-        PaymentCard p = new PaymentCard();
-        p.setcNum(card);
-        this.card = p;
-    }
-
     public String getUsername() {
         return username;
     }

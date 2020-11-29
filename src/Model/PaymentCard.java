@@ -4,18 +4,20 @@ import java.util.Date;
 
 public class PaymentCard {
     private String cNum;
-    private Date exp;
+    private String exp;
     private String secCode;
 
-    public PaymentCard(){
-
+    public PaymentCard(String c, String e, String s){
+        this.cNum = c;
+        this.exp = e;
+        this.secCode = s;
     }
 
-    public Date getExp() {
+    public String getExp() {
         return exp;
     }
 
-    public void setExp(Date exp) {
+    public void setExp(String exp) {
         this.exp = exp;
     }
 

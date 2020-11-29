@@ -1,23 +1,22 @@
 package Model;
 
-import View.MovieListView;
-import View.SeatView;
-import View.ShowtimeList;
+import View.*;
+
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args){
 
-        /*SeatView s = new SeatView();
-        s.DisplayAvailSeats();*/
-
-        SeatView s = new SeatView();
-        MovieTicket t = new MovieTicket();
-        t.setMovieName("UP");
-        t.setStartTime("4:00");
-        t.setEndTime("6:00");
-        //t.setTheatreName("Cineplex");
-        //t.setNum(1);
-        s.DisplayAvailSeats(t);
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    GuestUserView frame = new GuestUserView();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
     }

@@ -12,7 +12,7 @@ public class GuestUser extends User{
 
     // this function will need to be passed the information read from the View section
     public void CreateAccount(String Username, String Password, String card){
-        UserController Ucontroller= new UserController();
+        /*UserController Ucontroller= new UserController();
         // this function will prompt the user to enter a
         // username and password using a GUI screen.
         // first create new account, then create the registered user
@@ -23,6 +23,6 @@ public class GuestUser extends User{
         Account a = new Account(Username,Password,card);
         RegisteredUser newReg = new RegisteredUser(this.getName(), this.getEmail(), this.getAddress(), a, NewID);
         // add this user into the database
-        Ucontroller.addMember(newReg);
+        Ucontroller.addMember(newReg);*/
     }
 }

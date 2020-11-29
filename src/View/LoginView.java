@@ -1,5 +1,8 @@
 package View;
 
+import Controllers.LoginController;
+import Model.RegisteredUser;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,11 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
-public class LoginView extends JFrame {
+public class LoginView extends JFrame implements ActionListener{
 
     private JPanel contentPane;
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private JButton btnNewButton;
 
     /**
      * Create the frame.
@@ -51,36 +55,29 @@ public class LoginView extends JFrame {
         passwordField.setBounds(255, 126, 115, 20);
         contentPane.add(passwordField);
 
-        JButton btnNewButton = new JButton("Login");
+        btnNewButton = new JButton("Login");
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
-                    //check usernameField.getText()
-                    //check passwordField.getText()
-                    // login with the above info
-
-                    if (true) {
-                        RegUserView reg = new RegUserView();
-                        reg.setVisible(true);
-                        dispose();
-                    }
-                    //else {
-                    //	JOptionPane.showMessageDialog(null, "Login info incorrect");
-                    //}
-
-                }catch(Exception e1){
-                    JOptionPane.showMessageDialog(null, e1);
-                }
-            }
-        });
+        btnNewButton.addActionListener(this);
         btnNewButton.setBounds(204, 194, 115, 23);
         contentPane.add(btnNewButton);
 
+        setVisible(true);
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnNewButton) {
+
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            LoginController lc = new LoginController();
+            RegisteredUser r = (RegisteredUser) lc.attemptLogin(username, password);
+            r.showHome();
+            dispose();
+
+        }
+    }
 }
 
 

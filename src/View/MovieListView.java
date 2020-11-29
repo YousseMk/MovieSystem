@@ -66,6 +66,7 @@ public class MovieListView implements ActionListener {
         if(e.getSource() instanceof JButton){
             String moviename = ((JButton) e.getSource()).getText();
             this.t.setMovieName(moviename);
+            System.out.println(this.t.getMovieName());
         }
     }
 }

@@ -15,25 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class GuestUserView extends JFrame {
+public class GuestUserView extends JFrame implements ActionListener{
 
     private JPanel contentPane;
-
-    /**
-     * Launch the application (temp main function to test classes)
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    GuestUserView frame = new GuestUserView();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    JButton btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3;
 
     /**
      * Create the frame.
@@ -48,7 +33,7 @@ public class GuestUserView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton btnNewButton = new JButton("Browse Movies");
+        btnNewButton = new JButton("Browse Movies");
         btnNewButton.setForeground(new Color(0, 0, 0));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,40 +45,18 @@ public class GuestUserView extends JFrame {
         btnNewButton.setBounds(300, 175, 200, 55);
         contentPane.add(btnNewButton);
 
-        JButton btnNewButton_1 = new JButton("Cancel Tickets");
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GuestCancelView cancel = new GuestCancelView();
-                cancel.setVisible(true);
-                dispose();
-            }
-        });
+        btnNewButton_1 = new JButton("Cancel Tickets");
+        btnNewButton_1.addActionListener(this);
         btnNewButton_1.setBounds(300, 265, 200, 55);
         contentPane.add(btnNewButton_1);
 
-        JButton btnNewButton_2 = new JButton("Create Account");
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    CreateAccountView create = new CreateAccountView();
-                    create.setVisible(true);
-                    dispose();
-                }catch(Exception e1){
-                    JOptionPane.showMessageDialog(null, e1);
-                }
-            }
-        });
+        btnNewButton_2 = new JButton("Create Account");
+        btnNewButton_2.addActionListener(this);
         btnNewButton_2.setBounds(300, 356, 200, 55);
         contentPane.add(btnNewButton_2);
 
-        JButton btnNewButton_3 = new JButton("Login");
-        btnNewButton_3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                LoginView login = new LoginView();
-                login.setVisible(true);
-                dispose();
-            }
-        });
+        btnNewButton_3 = new JButton("Login");
+        btnNewButton_3.addActionListener(this);
         btnNewButton_3.setBounds(677, 50, 80, 23);
         contentPane.add(btnNewButton_3);
 
@@ -112,4 +75,25 @@ public class GuestUserView extends JFrame {
         contentPane.add(lblNewLabel_1);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnNewButton){
+
+        }
+        else if(e.getSource() == btnNewButton_1){
+            GuestCancelView cancel = new GuestCancelView();
+            cancel.setVisible(true);
+            dispose();
+        }
+        else if(e.getSource() == btnNewButton_2){
+            CreateAccountView create = new CreateAccountView();
+            create.setVisible(true);
+            dispose();
+        }
+        else if(e.getSource() == btnNewButton_3){
+            LoginView login = new LoginView();
+            login.setVisible(true);
+            dispose();
+        }
+    }
 }

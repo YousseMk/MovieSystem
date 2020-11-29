@@ -1,6 +1,7 @@
 package Model;
 
 import Controllers.LoginController;
+import View.RegUserView;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,5 +34,10 @@ public class RegisteredUser extends User {
 
     public void setMemberid(int memberid) {
         this.memberid = memberid;
+    }
+
+    public void showHome(){
+        RegUserView reg = new RegUserView(this);
+        reg.setVisible(true);
     }
 }

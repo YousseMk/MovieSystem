@@ -1,5 +1,10 @@
 package View;
 
+import Controllers.UserController;
+import Model.Account;
+import Model.PaymentCard;
+import Model.RegisteredUser;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -15,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class CreateAccountView extends JFrame {
+public class CreateAccountView extends JFrame implements ActionListener{
 
     private JPanel contentPane;
     private JTextField usernameField;
@@ -26,6 +31,8 @@ public class CreateAccountView extends JFrame {
     private JTextField cardNumberField;
     private JTextField cvvField;
     private JTextField expDateField;
+    private JTextField nameField;
+    JButton btnNewButton;
 
     /**
      * Create the frame.
@@ -42,7 +49,7 @@ public class CreateAccountView extends JFrame {
 
         JLabel lblNewLabel = new JLabel("User Name");
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblNewLabel.setBounds(108, 63, 69, 14);
+        lblNewLabel.setBounds(108, 126, 69, 14);
         contentPane.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("Password");
@@ -51,7 +58,7 @@ public class CreateAccountView extends JFrame {
         contentPane.add(lblNewLabel_1);
 
         usernameField = new JTextField();
-        usernameField.setBounds(239, 61, 167, 20);
+        usernameField.setBounds(239, 124, 137, 20);
         contentPane.add(usernameField);
         usernameField.setColumns(10);
 
@@ -61,30 +68,7 @@ public class CreateAccountView extends JFrame {
 
         JButton btnNewButton = new JButton("Create Account");
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
-                    //check usernameField.getText()
-                    //check passwordField.getText()
-                    //conPasswordField, emailField, addressField, cardNumberField, cvvField, expDateField
-                    //add an account with the above info
-                    //!!!!!!!!!!!!!!!!!!!!
-                    JOptionPane.showMessageDialog(null, "Account Created Successfully");
-                    if (true) {
-                        GuestUserView guest = new GuestUserView();
-                        guest.setVisible(true);
-                        dispose();
-                    }
-                    //else {
-                    //	JOptionPane.showMessageDialog(null, "Login info incorrect");
-                    //}
-
-                }catch(Exception e1){
-                    JOptionPane.showMessageDialog(null, e1);
-                }
-            }
-        });
+        btnNewButton.addActionListener(this);
         btnNewButton.setBounds(554, 455, 137, 23);
         contentPane.add(btnNewButton);
 
@@ -94,12 +78,12 @@ public class CreateAccountView extends JFrame {
 
         JLabel lblEmail = new JLabel("Email");
         lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblEmail.setBounds(108, 126, 69, 14);
+        lblEmail.setBounds(413, 126, 69, 14);
         contentPane.add(lblEmail);
 
         emailField = new JTextField();
         emailField.setColumns(10);
-        emailField.setBounds(239, 124, 167, 20);
+        emailField.setBounds(472, 124, 187, 20);
         contentPane.add(emailField);
 
         JLabel lblReenterPassword = new JLabel("Confirm Password");
@@ -156,5 +140,52 @@ public class CreateAccountView extends JFrame {
         lblCreateAccount.setFont(new Font("Tahoma", Font.BOLD, 20));
         lblCreateAccount.setBounds(108, 24, 208, 28);
         contentPane.add(lblCreateAccount);
+
+        nameField = new JTextField();
+        nameField.setColumns(10);
+        nameField.setBounds(239, 61, 137, 20);
+        contentPane.add(nameField);
+
+        JLabel lblName = new JLabel("Name");
+        lblName.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblName.setBounds(108, 63, 69, 14);
+        contentPane.add(lblName);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        /*try {
+            //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
+            //check usernameField.getText()
+            //check passwordField.getText()
+            //conPasswordField, emailField, addressField, cardNumberField, cvvField, expDateField
+            //add an account with the above info
+            //!!!!!!!!!!!!!!!!!!!!
+            JOptionPane.showMessageDialog(null, "Account Created Successfully");
+            if (true) {
+                GuestUserView guest = new GuestUserView();
+                guest.setVisible(true);
+                dispose();
+            }
+            //else {
+            //	JOptionPane.showMessageDialog(null, "Login info incorrect");
+            //}
+
+        }catch(Exception e1){
+            JOptionPane.showMessageDialog(null, e1);
+        }*/
+        if(e.getSource() == btnNewButton){
+            PaymentCard p = new PaymentCard(cardNumberField.getText(), expDateField.getText(), cvvField.getText());
+            Account a = new Account(usernameField.getText(), passwordField.getText(), p);
+            RegisteredUser newUser = new RegisteredUser(nameField.getText(), emailField.getText(), addressField.getText(), a, (int) (Math.random() * (9999 - 1111 + 1) + 1111));
+            UserController u = new UserController();
+            u.addMember(newUser);
+            dispose();
+
+            GuestUserView guest = new GuestUserView();
+            guest.setVisible(true);
+
+
+        }
     }
 }
