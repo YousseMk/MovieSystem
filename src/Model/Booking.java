@@ -17,7 +17,8 @@ public class Booking {
     }
 
     public void giveRefund() {
-
+        // this function will have to calculate the amount to refund,
+        // then send the appropriate amount of credits to the account holder.
     }
 
     /*public void selectTheatre(){
