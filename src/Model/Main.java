@@ -1,5 +1,6 @@
 package Model;
 
+import Controllers.BookingController;
 import View.*;
 
 import java.awt.*;
@@ -17,7 +18,6 @@ public class Main {
                 }
             }
         });
-
 
     }
 }

@@ -44,12 +44,16 @@ public class SeatView extends JFrame implements ActionListener {
 
         DBController dbc = new DBController();
         String stmt = "select * FROM Booking where moviename  = ? AND showstart = ? AND showend = ?;";
+        String stmt2 = "select * FROM BookingforGuest where moviename  = ? AND showstart = ? AND showend = ?;";
         PreparedStatement ps;
+        PreparedStatement ps2;
         ResultSet rs;
+        ResultSet rs2;
 
         try{
             dbc.connectToDB();
             ps = dbc.getCon().prepareStatement(stmt);
+
             ps.setString(1, this.t.getMovieName());
             ps.setString(2, this.t.getStartTime());
             ps.setString(3, this.t.getEndTime());
@@ -59,6 +63,18 @@ public class SeatView extends JFrame implements ActionListener {
                 String seat = rs.getString(3) + Integer.toString(rs.getInt(4));
                 booked.add(seat);
             }
+
+            ps2 = dbc.getCon().prepareStatement(stmt2);
+            ps2.setString(1, this.t.getMovieName());
+            ps2.setString(2, this.t.getStartTime());
+            ps2.setString(3, this.t.getEndTime());
+            rs2 = ps.executeQuery();
+
+            while(rs2.next()){
+                String seat2 = rs2.getString(3) + Integer.toString(rs.getInt(4));
+                booked.add(seat2);
+            }
+
 
             dbc.disconnectFromDB();
 
@@ -89,15 +105,24 @@ public class SeatView extends JFrame implements ActionListener {
             String buttonName = (((JButton) e.getSource()).getText());
             t.setSeatID(buttonName);
             BookingController b = new BookingController();
-            b.addBooking(this.t, this.id);
-            JOptionPane.showMessageDialog(null, buttonName + " is selected. Movie booked.");
-            //database!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            LoginController lc = new LoginController();
-            RegisteredUser r = lc.reConnect(this.id);
-            RegUserView reg = new RegUserView(r);
-            reg.setVisible(true);
-            dispose();
+            if(this.id == 0){
+                JOptionPane.showMessageDialog(null, buttonName + " is selected. Movie booked.");
+                PaymentView p = new PaymentView(t, id);
+                p.setVisible(true);
+                dispose();
+
+            }else {
+                b.addBooking(this.t, this.id);
+
+                JOptionPane.showMessageDialog(null, buttonName + " is selected. Movie booked.");
+
+                LoginController lc = new LoginController();
+                RegisteredUser r = lc.reConnect(this.id);
+                RegUserView reg = new RegUserView(r);
+                reg.setVisible(true);
+                dispose();
+            }
+
         }
     }
 }

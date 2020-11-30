@@ -1,5 +1,9 @@
 package View;
 
+import Controllers.BookingController;
+import Model.PartialRefund;
+import Model.Refund;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,10 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class GuestCancelView extends JFrame {
+public class GuestCancelView extends JFrame implements ActionListener {
 
     private JPanel contentPane;
     private JTextField receiptNumField;
+    JButton btnNewButton;
 
     /**
      * Create the frame.
@@ -42,32 +47,35 @@ public class GuestCancelView extends JFrame {
         contentPane.add(receiptNumField);
         receiptNumField.setColumns(10);
 
-        JButton btnNewButton = new JButton("Cancel");
+        btnNewButton = new JButton("Cancel");
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
-                    //check receiptNumField.getText()
-                    //Cancel movie for reg user
-
-                    JOptionPane.showMessageDialog(null, "Movie Cancelled Successfully");
-                    if (true) {
-                        GuestUserView guest = new GuestUserView();
-                        guest.setVisible(true);
-                        dispose();
-                    }
-                    //else {
-                    //	JOptionPane.showMessageDialog(null, "cancel failed");
-                    //}
-
-                }catch(Exception e1){
-                    JOptionPane.showMessageDialog(null, e1);
-                }
-            }
-        });
+        btnNewButton.addActionListener(this);
         btnNewButton.setBounds(222, 139, 115, 23);
         contentPane.add(btnNewButton);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnNewButton)
+            try {
+
+                JOptionPane.showMessageDialog(null, "Movie Cancelled Successfully");
+                if (true) {
+                    BookingController b = new BookingController();
+                    int receiptnum = Integer.parseInt(receiptNumField.getText());
+                    b.GuestCancel(receiptnum);
+                    Refund r = new PartialRefund(receiptnum, 20.00, "Thank you");
+                    GuestUserView guest = new GuestUserView();
+                    guest.setVisible(true);
+                    dispose();
+                }
+                //else {
+                //	JOptionPane.showMessageDialog(null, "cancel failed");
+                //}
+
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1);
+            }
+    }
 }
+

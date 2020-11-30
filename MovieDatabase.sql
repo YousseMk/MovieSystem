@@ -39,17 +39,17 @@ Foreign Key(memberid) references RegisteredUser(memberid));
 
 create table if not exists MovieDatabase.BookingforGuest(
 bookingid int PRIMARY KEY ,
-memberid int,
+email varchar(255),
 seatrow varchar(255),
 seatcol int,
 moviename varchar(255),
 theatrenum int,
 showstart varchar(255),
 showend varchar(255),
-cardnum varchar(255));
-email varchar(255),
-foreign key(theatrenum) references theatre(theatrenum),
-Foreign Key(memberid) references RegisteredUser(memberid));
+cardnum varchar(255),
+cvv varchar(255),
+exp varchar(255),
+foreign key(theatrenum) references theatre(theatrenum));
 
 create table if not exists MovieDatabase.Movie(
 name varchar(255),

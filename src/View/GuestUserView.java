@@ -1,5 +1,7 @@
 package View;
 
+import Model.MovieTicket;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -35,13 +37,7 @@ public class GuestUserView extends JFrame implements ActionListener{
 
         btnNewButton = new JButton("Browse Movies");
         btnNewButton.setForeground(new Color(0, 0, 0));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //!!!!!!!!!!!!!!!!!!!!!
-                //Browse Movies(I will add later)!!!!!!!!!!
-                //!!!!!!!!!!!!!!!!!!
-            }
-        });
+        btnNewButton.addActionListener(this);
         btnNewButton.setBounds(300, 175, 200, 55);
         contentPane.add(btnNewButton);
 
@@ -78,7 +74,9 @@ public class GuestUserView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnNewButton){
-            
+            MovieListView movies = new MovieListView(new MovieTicket(), 0);
+            movies.setVisible(true);
+            dispose();
         }
         else if(e.getSource() == btnNewButton_1){
             GuestCancelView cancel = new GuestCancelView();

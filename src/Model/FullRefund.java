@@ -10,4 +10,9 @@ public class FullRefund extends Refund {
         return payed;
     }
 
+    @Override
+    public void performTransaction(int receiptNum, double amount, String email) {
+        Receipt r = new Receipt(receiptNum, 20.00, email);
+
+    }
 }

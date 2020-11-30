@@ -10,6 +10,14 @@ public class GuestUser extends User{
         tempId = t;
     }
 
+    public String getTempId() {
+        return tempId;
+    }
+
+    public void setTempId(String tempId) {
+        this.tempId = tempId;
+    }
+
     // this function will need to be passed the information read from the View section
     public void CreateAccount(String Username, String Password, String card){
         /*UserController Ucontroller= new UserController();

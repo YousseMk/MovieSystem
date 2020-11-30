@@ -70,7 +70,7 @@ public class RegUserView extends JFrame implements ActionListener{
             dispose();
         }
         else if(e.getSource() == btnNewButton_1){
-            RegCancelView cancel = new RegCancelView();
+            RegCancelView cancel = new RegCancelView(u.getMemberid());
             cancel.setVisible(true);
             dispose();
         }

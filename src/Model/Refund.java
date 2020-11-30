@@ -1,16 +1,18 @@
 package Model;
 
-public class Refund {
-    private double amount;
+public abstract class Refund implements Transaction{
+    private static double amount = 20.0;
 
     public Refund(double amount){
         this.amount = amount;
 
     }
-    public void deleteBooking(Booking b){
 
+    public static double getAmount() {
+        return amount;
     }
-    public void performTransaction(double amount){
 
+    public static void setAmount(double amount) {
+        Refund.amount = amount;
     }
 }
