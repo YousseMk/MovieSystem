@@ -78,7 +78,7 @@ public class GuestUserView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnNewButton){
-
+            
         }
         else if(e.getSource() == btnNewButton_1){
             GuestCancelView cancel = new GuestCancelView();

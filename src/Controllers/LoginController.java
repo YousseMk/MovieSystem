@@ -52,4 +52,36 @@ public class LoginController {
         return returnedUser;
     }
 
+    public RegisteredUser reConnect(int memberid){
+        DBController db = new DBController();
+        ResultSet rs;
+        RegisteredUser returnedUser = null;
+
+
+        try {
+
+            db.connectToDB();
+            String stmt = "select * from RegisteredUser R where R.memberid=?;";
+
+            PreparedStatement s = db.getCon().prepareStatement(stmt);
+            s.setInt(1, memberid);
+            rs = s.executeQuery();
+
+            while(rs.next()) {
+                PaymentCard payCard = new PaymentCard(rs.getString(7), rs.getString(8), rs.getString(9));
+                Account userAccount = new Account(rs.getString(5), rs.getString(6), payCard);
+
+                returnedUser = new RegisteredUser(rs.getString(1), rs.getString(2), rs.getString(3),
+                        userAccount, rs.getInt(4));
+
+                db.disconnectFromDB();
+                return returnedUser;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return returnedUser;
+    }
+
 }

@@ -1,5 +1,6 @@
 package View;
 
+import Model.MovieTicket;
 import Model.RegisteredUser;
 
 import java.awt.Color;
@@ -16,15 +17,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 
-public class RegUserView extends JFrame {
+public class RegUserView extends JFrame implements ActionListener{
 
     private JPanel contentPane;
+    private JButton btnNewButton, btnNewButton_1, btnNewButton_2;
+    private RegisteredUser u;
 
     /**
      * Create the frame.
      */
     public RegUserView(RegisteredUser user) {
         super("Welcome " + user.getName() + " (" + user.getMemberid() + ")");
+        this.u = user;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -34,37 +38,19 @@ public class RegUserView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton btnNewButton = new JButton("Browse Movies");
+        btnNewButton = new JButton("Browse Movies");
         btnNewButton.setForeground(new Color(0, 0, 0));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //!!!!!!!!!!!!!!!!!!!!!
-                //Browse Movies(I will add later)!!!!!!!!!!
-                //!!!!!!!!!!!!!!!!!!
-            }
-        });
+        btnNewButton.addActionListener(this);
         btnNewButton.setBounds(300, 175, 200, 55);
         contentPane.add(btnNewButton);
 
-        JButton btnNewButton_1 = new JButton("Cancel Tickets");
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                RegCancelView cancel = new RegCancelView();
-                cancel.setVisible(true);
-                dispose();
-            }
-        });
+        btnNewButton_1 = new JButton("Cancel Tickets");
+        btnNewButton_1.addActionListener(this);
         btnNewButton_1.setBounds(300, 265, 200, 55);
         contentPane.add(btnNewButton_1);
 
-        JButton btnNewButton_2 = new JButton("Logout");
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GuestUserView guest = new GuestUserView();
-                guest.setVisible(true);
-                dispose();
-            }
-        });
+        btnNewButton_2 = new JButton("Logout");
+        btnNewButton_2.addActionListener(this);
         btnNewButton_2.setBounds(677, 50, 80, 23);
         contentPane.add(btnNewButton_2);
 
@@ -76,4 +62,22 @@ public class RegUserView extends JFrame {
         contentPane.add(lblNewLabel);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnNewButton){
+            MovieListView movies = new MovieListView(new MovieTicket(), u.getMemberid());
+            movies.setVisible(true);
+            dispose();
+        }
+        else if(e.getSource() == btnNewButton_1){
+            RegCancelView cancel = new RegCancelView();
+            cancel.setVisible(true);
+            dispose();
+        }
+        else if(e.getSource() == btnNewButton_2){
+            GuestUserView guest = new GuestUserView();
+            guest.setVisible(true);
+            dispose();
+        }
+    }
 }

@@ -3,28 +3,35 @@ package Controllers;
 
 import Model.MovieTicket;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class BookingController {
 
-    /*public void selectTheatre(MovieTicket ticket){
-        //give ticket to view so that theatre info can be selected
-        ticket.setTheatreName(name);
-        ticket.setNum(tnum);
-    }
+    public void addBooking(MovieTicket t, int memberid){
+        DBController dbc = new DBController();
+        String stmt =  "INSERT INTO MovieDatabase.Booking(bookingid, memberid, seatrow, seatcol, moviename, theatrenum, showstart, showend) " +
+                "values (?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement ps;
+        int success;
 
-    public void selectMovie(MovieTicket ticket){
-        //give ticket to view to select movie
-        ticket.setMovieName(moviename);
-    }
+        try{
+            dbc.connectToDB();
+            ps = dbc.getCon().prepareStatement(stmt);
+            ps.setInt(1, (int) (Math.random() * (999 - 111 + 1) + 111));
+            ps.setInt(2, memberid);
+            ps.setString(3, Character.toString(t.getSeatID().charAt(0)));
+            ps.setString(4, Character.toString(t.getSeatID().charAt(1)));
+            ps.setString(5, t.getMovieName());
+            ps.setInt(6, t.gettNum());
+            ps.setString(7, t.getStartTime());
+            ps.setString(8, t.getEndTime());
+            success = ps.executeUpdate();
+            dbc.disconnectFromDB();
 
-    public void selectShowtime(MovieTicket ticket){
-        //give ticket to view to select showtime
-        ticket.setStartTime(start);
-        ticket.setEndTime(end);
+        }catch(SQLException e){
+            e.getErrorCode();
+        }
     }
-
-    public void selectSeat(MovieTicket ticket){
-        //give ticket to view to select seat
-        BookingController bc = new BookingController();
-        bc.selectSeat(ticket);
-    }*/
 }

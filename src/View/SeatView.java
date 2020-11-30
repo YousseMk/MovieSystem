@@ -1,8 +1,13 @@
 package View;
 
+import Controllers.BookingController;
 import Controllers.DBController;
+import Controllers.LoginController;
 import Model.MovieTicket;
+import Model.RegisteredUser;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,21 +16,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SeatView implements ActionListener {
+public class SeatView extends JFrame implements ActionListener {
 
     private JButton seatGrid[][];
     private ArrayList<String> booked;
+    private JPanel contentPane;
 
     MovieTicket t;
+    int id;
 
-    public void DisplayAvailSeats(MovieTicket ticket){
+    public SeatView(MovieTicket ticket, int memberid){
 
         this.t = ticket;
+        this.id = memberid;
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 800, 600);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(new GridLayout(5, 5, 3, 3));
+
         booked = new ArrayList<String>();
-
-        JFrame frame = new JFrame("SEATS");
-        JPanel panel = new JPanel(new GridLayout(5,5));
-
         seatGrid = new JButton[5][5];
 
         DBController dbc = new DBController();
@@ -61,15 +75,11 @@ public class SeatView implements ActionListener {
                     seatGrid[i][j].setText("BOOKED");
                 }
                 seatGrid[i][j].addActionListener(this);
-                panel.add(seatGrid[i][j]);
+                contentPane.add(seatGrid[i][j]);
                 col ++;
             }
             row ++;
         }
-
-        frame.add(panel);
-        frame.setSize(1000,1000);
-        frame.setVisible(true);
 
     }
 
@@ -77,7 +87,17 @@ public class SeatView implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof JButton){
             String buttonName = (((JButton) e.getSource()).getText());
-            System.out.println(buttonName);
+            t.setSeatID(buttonName);
+            BookingController b = new BookingController();
+            b.addBooking(this.t, this.id);
+            JOptionPane.showMessageDialog(null, buttonName + " is selected. Movie booked.");
+            //database!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            LoginController lc = new LoginController();
+            RegisteredUser r = lc.reConnect(this.id);
+            RegUserView reg = new RegUserView(r);
+            reg.setVisible(true);
+            dispose();
         }
     }
 }

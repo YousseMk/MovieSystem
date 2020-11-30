@@ -5,6 +5,7 @@ import Model.Movie;
 import Model.MovieTicket;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,21 +14,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class MovieListView implements ActionListener {
+public class MovieListView extends JFrame implements ActionListener {
 
-    JFrame frame;
     JPanel panel;
-
     MovieTicket t;
+    int id;
+    private JPanel contentPane;
+    JButton btnNewButton;
+    JComboBox<String> comboBox;
 
-    public void showMovies(MovieTicket t){
+    public MovieListView(MovieTicket t, int memberid){
 
         this.t = t;
+        this.id = memberid;
 
         DBController dbc = new DBController();
         ResultSet rs;
         String stmt = "Select distinct name from Movie;";
-        ArrayList<JButton> movies = new ArrayList<JButton>();
+        ArrayList<String> movies = new ArrayList<String>();
 
         try{
             dbc.connectToDB();
@@ -35,7 +39,7 @@ public class MovieListView implements ActionListener {
             rs = ps.executeQuery();
 
             while(rs.next()){
-                movies.add(new JButton(rs.getString(1)));
+                movies.add(rs.getString(1));
             }
 
             dbc.disconnectFromDB();
@@ -44,17 +48,31 @@ public class MovieListView implements ActionListener {
             e.getErrorCode();
         }
 
-        frame = new JFrame("Movies");
-        panel = new JPanel(new GridLayout(10,5));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-        for(int i = 0; i < movies.size(); i ++){
-            movies.get(i).addActionListener(this);
-            panel.add(movies.get(i));
-        }
+        JLabel lblNewLabel = new JLabel("Select Movie");
+        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel.setBounds(98, 68, 96, 14);
+        contentPane.add(lblNewLabel);
 
-        frame.add(panel);
-        frame.setSize(1000, 1000);
-        frame.setVisible(true);
+        String movieArray[] =  movies.toArray(new String[movies.size()]);
+        comboBox = new JComboBox<>(movieArray);
+        comboBox.setBounds(238, 65, 200, 22);
+        contentPane.add(comboBox);
+
+        btnNewButton = new JButton("Continue");
+        btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+        btnNewButton.addActionListener(this);
+        btnNewButton.setBounds(220, 135, 115, 23);
+        contentPane.add(btnNewButton);
+
+
     }
 
     public MovieTicket getT() {
@@ -63,10 +81,16 @@ public class MovieListView implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() instanceof JButton){
-            String moviename = ((JButton) e.getSource()).getText();
-            this.t.setMovieName(moviename);
-            System.out.println(this.t.getMovieName());
+        if(e.getSource() == btnNewButton) {
+            String msg = (String) comboBox.getSelectedItem();
+            t.setMovieName(msg);
+
+            JOptionPane.showMessageDialog(null, msg + " is a good choice.");
+            if (true) {
+                ShowtimeList showtime = new ShowtimeList(this.t, this.id);
+                showtime.setVisible(true);
+                dispose();
+            }
         }
     }
 }
