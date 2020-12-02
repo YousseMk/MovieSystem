@@ -23,7 +23,9 @@ address varchar(255),
 memberid int PRIMARY KEY,
 username varchar(255),
 password varchar(255),
-cardnum varchar(255));
+cardnum varchar(255))
+cvv varchar(255),
+exp varchar(255);
 
 create table if not exists MovieDatabase.Booking(
 bookingid int PRIMARY KEY ,
