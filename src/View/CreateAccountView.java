@@ -154,38 +154,32 @@ public class CreateAccountView extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*try {
-            //!!!!!!!!!!!!Connect database!!!!!!!!!!!!!!!!!!!
-            //check usernameField.getText()
-            //check passwordField.getText()
-            //conPasswordField, emailField, addressField, cardNumberField, cvvField, expDateField
-            //add an account with the above info
-            //!!!!!!!!!!!!!!!!!!!!
-            JOptionPane.showMessageDialog(null, "Account Created Successfully");
-            if (true) {
-                GuestUserView guest = new GuestUserView();
-                guest.setVisible(true);
-                dispose();
+        try {
+
+            if(e.getSource() == btnNewButton){
+                if(!cardNumberField.getText().isEmpty() && !expDateField.getText().isEmpty() && !cvvField.getText().isEmpty() &&
+                        !usernameField.getText().isEmpty() && !passwordField.getText().isEmpty() && !nameField.getText().isEmpty() && !emailField.getText().isEmpty()) {
+
+                    PaymentCard p = new PaymentCard(cardNumberField.getText(), expDateField.getText(), cvvField.getText());
+                    Account a = new Account(usernameField.getText(), passwordField.getText(), p);
+                    RegisteredUser newUser = new RegisteredUser(nameField.getText(), emailField.getText(), addressField.getText(), a, (int) (Math.random() * (9999 - 1111 + 1) + 1111));
+                    UserController u = new UserController();
+                    u.addMember(newUser);
+
+
+                    GuestUserView guest = new GuestUserView();
+                    guest.setVisible(true);
+                    dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Please fill all info");
+                }
+
             }
-            //else {
-            //	JOptionPane.showMessageDialog(null, "Login info incorrect");
-            //}
 
         }catch(Exception e1){
             JOptionPane.showMessageDialog(null, e1);
-        }*/
-        if(e.getSource() == btnNewButton){
-            PaymentCard p = new PaymentCard(cardNumberField.getText(), expDateField.getText(), cvvField.getText());
-            Account a = new Account(usernameField.getText(), passwordField.getText(), p);
-            RegisteredUser newUser = new RegisteredUser(nameField.getText(), emailField.getText(), addressField.getText(), a, (int) (Math.random() * (9999 - 1111 + 1) + 1111));
-            UserController u = new UserController();
-            u.addMember(newUser);
-
-
-            GuestUserView guest = new GuestUserView();
-            guest.setVisible(true);
-            dispose();
-
         }
+
     }
 }
