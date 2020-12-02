@@ -99,6 +99,8 @@ public class SeatView extends JFrame implements ActionListener {
                 seatGrid[i][j] = new JButton(row + Integer.toString(col));
                 if(booked.contains(seatGrid[i][j].getText())){
                     seatGrid[i][j].setText("BOOKED");
+                    seatGrid[i][j].setEnabled(false);
+
                 }
                 seatGrid[i][j].addActionListener(this);
                 contentPane.add(seatGrid[i][j]);
