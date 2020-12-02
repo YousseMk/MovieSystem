@@ -69,16 +69,35 @@ public class BookingController {
         return bookingid;
     }
 
-    public void GuestCancel(int receiptnum){
+    public String GuestCancel(int receiptnum){
 
         DBController dbc = new DBController();
-        String stmt =  "DELETE FROM `MovieDatabase`.`BookingforGuest` WHERE (`bookingid` = ?);";
+        String stmt1 =  "DELETE FROM `MovieDatabase`.`BookingforGuest` WHERE (`bookingid` = ?);";
+        String stmt2 =  "Select * FROM `MovieDatabase`.`BookingforGuest` WHERE (`bookingid` = ?);";
         PreparedStatement ps;
+        String email = "";
+        ResultSet rs;
         int success;
 
         try{
             dbc.connectToDB();
-            ps = dbc.getCon().prepareStatement(stmt);
+            ps = dbc.getCon().prepareStatement(stmt2);
+            ps.setInt(1, receiptnum);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                email = rs.getString("email");
+            }
+
+            dbc.disconnectFromDB();
+
+        }catch(SQLException e){
+            e.getErrorCode();
+        }
+
+        try{
+            dbc.connectToDB();
+            ps = dbc.getCon().prepareStatement(stmt1);
             ps.setInt(1, receiptnum);
             success = ps.executeUpdate();
             dbc.disconnectFromDB();
@@ -86,6 +105,7 @@ public class BookingController {
         }catch(SQLException e){
             e.getErrorCode();
         }
+        return email;
     }
 
     public void regCancel(int bookingid){

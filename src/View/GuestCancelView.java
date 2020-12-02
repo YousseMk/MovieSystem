@@ -63,8 +63,8 @@ public class GuestCancelView extends JFrame implements ActionListener {
                 if (true) {
                     BookingController b = new BookingController();
                     int receiptnum = Integer.parseInt(receiptNumField.getText());
-                    b.GuestCancel(receiptnum);
-                    Refund r = new PartialRefund(receiptnum, 20.00, "Thank you");
+                    String email = b.GuestCancel(receiptnum);
+                    Refund r = new PartialRefund(receiptnum, 20.00, email);
                     GuestUserView guest = new GuestUserView();
                     guest.setVisible(true);
                     dispose();

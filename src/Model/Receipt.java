@@ -1,5 +1,7 @@
 package Model;
 
+import javax.swing.*;
+
 public class Receipt {
     private int receiptNum;
     private double amountPayed;
@@ -14,5 +16,8 @@ public class Receipt {
         System.out.println(email);
         System.out.println(receiptNum);
         System.out.println(amountPayed);
+
+        String s = "Receipt emailed to: \n" + email + "\n" + receiptNum + "\n" + amountPayed;
+        JOptionPane.showMessageDialog(null, s);
     }
 }
