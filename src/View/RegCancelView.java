@@ -3,6 +3,10 @@ package View;
 import Controllers.BookingController;
 import Controllers.DBController;
 import Controllers.LoginController;
+import Model.FullRefund;
+import Model.PartialRefund;
+import Model.Refund;
+import Model.RegisteredUser;
 
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -99,8 +103,11 @@ public class RegCancelView extends JFrame implements ActionListener{
             b.regCancel(bookingid);
             JOptionPane.showMessageDialog(null, "Movie Cancelled Successfully");
             LoginController l = new LoginController();
-            RegUserView r = new RegUserView(l.reConnect(id));
-            r.setVisible(true);
+            RegisteredUser ru = l.reConnect(id);
+            Refund r = new FullRefund(bookingid, 20.00, ru.getEmail());
+
+            RegUserView regView = new RegUserView(ru);
+            regView.setVisible(true);
             dispose();
 
         }
