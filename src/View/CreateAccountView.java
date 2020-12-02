@@ -66,7 +66,7 @@ public class CreateAccountView extends JFrame implements ActionListener{
         passwordField.setBounds(239, 197, 115, 20);
         contentPane.add(passwordField);
 
-        JButton btnNewButton = new JButton("Create Account");
+        btnNewButton = new JButton("Create Account");
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
         btnNewButton.addActionListener(this);
         btnNewButton.setBounds(554, 455, 137, 23);
@@ -180,11 +180,11 @@ public class CreateAccountView extends JFrame implements ActionListener{
             RegisteredUser newUser = new RegisteredUser(nameField.getText(), emailField.getText(), addressField.getText(), a, (int) (Math.random() * (9999 - 1111 + 1) + 1111));
             UserController u = new UserController();
             u.addMember(newUser);
-            dispose();
+
 
             GuestUserView guest = new GuestUserView();
             guest.setVisible(true);
-
+            dispose();
 
         }
     }

@@ -99,7 +99,8 @@ public class RegCancelView extends JFrame implements ActionListener{
             b.regCancel(bookingid);
             JOptionPane.showMessageDialog(null, "Movie Cancelled Successfully");
             LoginController l = new LoginController();
-            l.reConnect(id);
+            RegUserView r = new RegUserView(l.reConnect(id));
+            r.setVisible(true);
             dispose();
 
         }

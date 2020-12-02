@@ -64,20 +64,30 @@ public class SeatView extends JFrame implements ActionListener {
                 booked.add(seat);
             }
 
+            dbc.disconnectFromDB();
+
+
+        }catch(SQLException e){
+            e.getErrorCode();
+        }
+
+        try{
+
+            dbc.connectToDB();
+
             ps2 = dbc.getCon().prepareStatement(stmt2);
             ps2.setString(1, this.t.getMovieName());
             ps2.setString(2, this.t.getStartTime());
             ps2.setString(3, this.t.getEndTime());
-            rs2 = ps.executeQuery();
+            rs2 = ps2.executeQuery();
 
             while(rs2.next()){
-                String seat2 = rs2.getString(3) + Integer.toString(rs.getInt(4));
+                String seat2 = rs2.getString(3) + Integer.toString(rs2.getInt(4));
                 booked.add(seat2);
             }
 
 
             dbc.disconnectFromDB();
-
         }catch(SQLException e){
             e.getErrorCode();
         }
