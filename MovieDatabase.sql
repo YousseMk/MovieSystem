@@ -152,12 +152,3 @@ Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatco
 Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
 (129, '1235', 'd', 5, 'Transformers',5, '4:00', '6:00');
 
-/* these other entries will be for Guest users, just going to give them ids that aren't in the database */
-Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
-(130, '1238', 'd', 3, 'Transformers',5, '12:00', '2:00');
-Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
-(131, '1239', 'd', 2, 'Transformers',5, '12:00', '2:00');
-Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
-(132, '1240', 'e', 5, 'Batman',8, '8:00', '10:00');
-Insert into `MovieDatabase`.`Booking`(`bookingid`,`memberid`, `seatrow`, `seatcol`, `moviename`, `theatrenum`, `showstart`, `showend`) values
-(133, '1241', 'a', 5, 'Batman',8, '8:00', '10:00');
